@@ -1,0 +1,25 @@
+@import "../../../../assets/styles/mixins";
+
+.main-title {
+  .main-title__container {
+    align-items: center;
+    background-size: contain;
+    display: flex;
+    filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.9)) sepia(0%);
+    height: 270px;
+    justify-content: center;
+    margin: auto;
+    max-width: 1920px;
+    & .title {
+      @include main-title;
+    }
+  }
+  & .sub-title {
+    color: black;
+    font-family: "Alegreya", serif;
+    font-size: 22px;
+    font-style: italic;
+    max-width: 1400px;
+    padding: 0 200px;
+  }
+}

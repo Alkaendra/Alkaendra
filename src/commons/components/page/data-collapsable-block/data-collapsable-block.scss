@@ -1,0 +1,31 @@
+@import "../../../../assets/styles/mixins.scss";
+@import "../../../../assets/styles/colors.scss";
+
+.data-collapsable-block {
+  margin: 3rem auto;
+  max-width: 1920px;
+  width: calc(100% - 24rem);
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .icon-label {
+      display: flex;
+      img {
+        width: 144px;
+      }
+      .label {
+        @include section-title;
+        color: $ink-red;
+        margin-left: 2rem;
+      }
+    }
+    .expand-block-handler {
+      cursor: pointer;
+      transition: all 0.3s;
+      &.uncollapsed {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

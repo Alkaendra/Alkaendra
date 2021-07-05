@@ -1,0 +1,15 @@
+@mixin main-title {
+  color: #3a2108;
+  font-family: "Jim Nightshade", cursive;
+  font-size: 9rem;
+  font-weight: lighter;
+  letter-spacing: 0.5px;
+  margin-bottom: unset;
+  margin-top: unset;
+}
+
+@mixin section-title {
+  @include main-title;
+  color: darkred;
+  font-size: 5rem;
+}

@@ -1,0 +1,37 @@
+.species-list__title {
+  align-items: center;
+  background: url("../../../../assets/images/titulo_pagina.jpg") no-repeat top
+    center;
+  display: flex;
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.7)) sepia(0%);
+  height: 282px;
+  justify-content: center;
+  & .species-list__title__body {
+    margin-top: 10px;
+  }
+}
+
+.species-list__container {
+  display: "flex";
+  flex-wrap: "wrap";
+  padding: 60px 100px;
+
+  a {
+    &:nth-child(3n) {
+      & img {
+        margin-right: 0;
+      }
+    }
+  }
+
+  & img {
+    width: 450px;
+    margin-right: 60px;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.7)) sepia(50%);
+
+    &:hover {
+      cursor: pointer;
+      filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.9)) sepia(0%);
+    }
+  }
+}
