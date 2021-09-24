@@ -1,0 +1,63 @@
+@import "../../../../assets/styles/mixins.scss";
+@import "../../../../assets/styles/colors.scss";
+
+.ethnicity-data {
+  display: flex;
+  flex: 1;
+  padding: 0.5rem 3rem;
+  .habitats,
+  .continent {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    img {
+      height: 80px;
+      width: 80px;
+    }
+  }
+  .center-panel {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    .description {
+      color: black;
+      font-family: "Alegreya", serif;
+      font-size: 16px;
+    }
+    .population-densities {
+      padding: 0 3rem 1rem;
+      .item {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        img {
+          height: 80px;
+          width: 80px;
+        }
+        div {
+          font-family: "Alegreya", serif;
+          font-size: 18px;
+        }
+      }
+    }
+    .name {
+      @include other-title;
+      font-size: 5rem;
+    }
+  }
+  .cultures {
+    .culture {
+      margin-bottom: 1rem;
+      img {
+        width: 150px;
+      }
+      .name {
+        @include other-title;
+        font-size: 2rem;
+        line-height: 1rem;
+      }
+    }
+  }
+}

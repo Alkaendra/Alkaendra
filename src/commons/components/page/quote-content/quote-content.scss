@@ -1,0 +1,39 @@
+@import "../../../../assets/styles/colors.scss";
+@import "../../../../assets/styles/mixins.scss";
+
+.quote-content {
+  @include generic-container;
+  margin: 3rem auto;
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .half {
+    padding: 24px;
+    &:first-child {
+      img {
+        max-width: 200px;
+      }
+    }
+  }
+  .author,
+  .author-role {
+    color: black;
+    font-family: "Alegreya", serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: end;
+  }
+  .author-role {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .quote {
+    color: $ink-red;
+    font-family: "Alegreya", serif;
+    font-style: italic;
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+}

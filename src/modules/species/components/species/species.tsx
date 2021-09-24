@@ -1,8 +1,12 @@
 import React from "react";
 import { useParams } from "react-router";
+import { UnlightWorldArea } from "../../../../commons/components/history-line-generator/generate-history-line";
+import DataCarousel from "../../../../commons/components/page/carousel/data-carousel";
 import DataCollapsableBlock from "../../../../commons/components/page/data-collapsable-block/data-collapsable-block";
 import PageHeader from "../../../../commons/components/page/header/header";
-import SpeciesDescription from "../../../../commons/components/page/species/description/species-description";
+import QuoteContent from "../../../../commons/components/page/quote-content/quote-content";
+import SpeciesDescription from "../../../../commons/components/species/description/species-description";
+import EthnicityData from "../../../../commons/components/species/ethnicities/ethnicity-data";
 import { UrlParams } from "../../../../commons/types/common";
 import { species } from "../species-list/utils";
 import "./species.scss";
@@ -12,7 +16,9 @@ const Species = (props: any) => {
 
   const data = species.find((specie) => specie.name === speciesId) || {};
 
-  console.log(data);
+  const cosa = new UnlightWorldArea();
+
+  console.log(cosa.generateArea());
   return (
     <div className="species__container">
       <PageHeader
@@ -25,28 +31,17 @@ const Species = (props: any) => {
         titleLabel="Descripción"
       >
         <SpeciesDescription
+          data={data.description_data}
           description={data.description}
           image={data.description_image}
         />
       </DataCollapsableBlock>
-      <DataCollapsableBlock
-        titleImage={data.description_title_image}
-        titleLabel="Descripción"
-      >
-        <SpeciesDescription
-          description={data.description}
-          image={data.description_image}
-        />
-      </DataCollapsableBlock>
-      <DataCollapsableBlock
-        titleImage={data.description_title_image}
-        titleLabel="Descripción"
-      >
-        <SpeciesDescription
-          description={data.description}
-          image={data.description_image}
-        />
-      </DataCollapsableBlock>
+      <QuoteContent quoteData={data.quotes[0]} />
+      <DataCarousel itemToShowIndex={0}>
+        {data.ethnicities?.map((ethnicity: any) => (
+          <EthnicityData ethnicityData={ethnicity} key={ethnicity.name} />
+        ))}
+      </DataCarousel>
     </div>
   );
 };

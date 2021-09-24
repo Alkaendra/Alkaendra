@@ -1,5 +1,7 @@
+@import "./colors.scss";
+
 @mixin main-title {
-  color: #3a2108;
+  color: $ink-red;
   font-family: "Jim Nightshade", cursive;
   font-size: 9rem;
   font-weight: lighter;
@@ -10,6 +12,17 @@
 
 @mixin section-title {
   @include main-title;
-  color: darkred;
   font-size: 5rem;
+}
+
+@mixin other-title {
+  @include main-title;
+  font-size: 3rem;
+}
+
+@mixin generic-container {
+  display: flex;
+  margin: auto;
+  max-width: 1920px;
+  width: calc(100% - 24rem);
 }

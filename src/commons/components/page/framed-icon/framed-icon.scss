@@ -1,0 +1,21 @@
+.framed-icon {
+  &.final-frame-icon {
+    height: 163px;
+    width: 150px;
+  }
+  &.medium-frame-icon,
+  .icon {
+    height: 127px;
+    width: 150px;
+  }
+  &.start-frame-icon {
+    height: 72px;
+    margin-left: -5px;
+    width: 284px;
+  }
+  .icon {
+    margin: auto;
+  }
+  .text {
+  }
+}

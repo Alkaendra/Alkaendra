@@ -1,0 +1,21 @@
+@import "../../../../assets/styles/mixins.scss";
+
+.data-carousel {
+  @include generic-container;
+  align-items: center;
+  justify-content: center;
+  .next-handler {
+    img {
+      transform: rotate(270deg);
+    }
+  }
+  .content {
+    display: flex;
+    flex: 1;
+  }
+  .prev-handler {
+    img {
+      transform: rotate(90deg);
+    }
+  }
+}

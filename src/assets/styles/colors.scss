@@ -1,1 +1,26 @@
 $ink-red: #4e0808;
+$pop-density-dark-green: #095505;
+$pop-density-green: #465b05;
+$pop-density-orange: #bb831e;
+$pop-density-red: #5a0e05;
+$pop-density-dark-red: #2d0000;
+
+.dark-green {
+  color: $pop-density-dark-green;
+}
+
+.green {
+  color: $pop-density-green;
+}
+
+.orange {
+  color: $pop-density-orange;
+}
+
+.red {
+  color: $pop-density-red;
+}
+
+.dark-red {
+  color: $pop-density-dark-red;
+}

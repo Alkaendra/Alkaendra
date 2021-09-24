@@ -1,0 +1,210 @@
+@import "../../../../assets/styles/mixins.scss";
+
+.species-description {
+  margin: 0 24px 24px 24px;
+  h3 {
+    @include section-title;
+  }
+  & .species-description__container {
+    max-width: 1400px;
+    & .species-features__container {
+      display: flex;
+      & .image {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 350px;
+      }
+      & .species-features {
+        padding-left: 20px;
+        & .gender-icons {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-bottom: 20px;
+          .split-content {
+            padding: 24px 0;
+            .species-description-image {
+              margin: 0 60px;
+              max-width: 300px;
+            }
+          }
+          & .female-icon,
+          & .male-icon {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0px;
+            & img {
+              height: 60px;
+              margin-right: 20px;
+              width: 60px;
+            }
+            .gender-data {
+              .even:first-child {
+                & .gender-trait {
+                  img {
+                    height: 80px;
+                    width: 80px;
+                  }
+                }
+              }
+              & .gender-trait {
+                align-items: center;
+                color: black;
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                font-family: "Alegreya";
+                font-size: 14px;
+                font-weight: 700;
+                height: 80px;
+                justify-content: center;
+                padding: 0 8px;
+                & img {
+                  height: 45px;
+                  margin-right: unset;
+                  width: 45px;
+                }
+                & span {
+                  display: flex;
+                  flex: 1;
+                  line-height: 14px;
+                  padding-top: 12px;
+                  & .color {
+                    border-radius: 50%;
+                    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
+                    height: 15px;
+                    margin: 0 8px;
+                    width: 15px;
+                    &.marfil {
+                      background-color: ivory;
+                    }
+                    &.pardo {
+                      background-color: burlywood;
+                    }
+                    &.ceruleo {
+                      background-color: #e1ebf4;
+                    }
+                    &.negro {
+                      background-color: #0c1a1c;
+                    }
+                    &.verde {
+                      background-color: #184e01;
+                    }
+                    &.azul {
+                      background-color: #014e4e;
+                    }
+                    &.violeta {
+                      background-color: #37014e;
+                    }
+                    &.rojo {
+                      background-color: #4e0108;
+                    }
+                    &.burdeos {
+                      background-color: #981b29;
+                    }
+                  }
+                }
+              }
+              & .gender-traits-list {
+                display: flex;
+                flex-wrap: wrap;
+              }
+              & .description-data {
+                & .description-traits-list {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  & .description-trait {
+                    align-items: center;
+                    color: #4e0108;
+                    display: flex;
+                    font-family: "Alegreya";
+                    font-size: 20px;
+                    justify-content: flex-start;
+                    padding-left: 40px;
+                    img {
+                      height: 20px;
+                      width: 20px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          & .male-icon {
+            padding-left: 12px;
+          }
+          & .empty-space {
+            height: 60px;
+            width: 46px;
+          }
+        }
+        & .features-list {
+          display: flex;
+          flex-direction: column;
+          & .row {
+            display: flex;
+            & .container {
+              align-items: center;
+              display: flex;
+              justify-content: center;
+            }
+            & .half-data-field {
+              display: flex;
+              flex: 1;
+            }
+            & .both-data,
+            & .female-data,
+            & .male-data {
+              display: flex;
+              flex: 1;
+              flex-direction: column;
+              color: black;
+              font-family: "Alegreya";
+              font-size: 18px;
+              & span {
+                display: flex;
+                align-items: center;
+                height: 80px;
+                justify-content: center;
+                margin-bottom: 8px;
+                padding: 0 20px;
+              }
+            }
+            & .feature-icons {
+              display: flex;
+              flex-direction: column;
+              & .container {
+                display: flex;
+                align-items: center;
+                height: 80px;
+                justify-content: center;
+                margin-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+    & .text {
+      & p {
+        background: #f8e5b659;
+        color: black;
+        font-family: "Alegreya";
+        font-size: 18px;
+        margin: unset;
+        padding: 20px 0;
+        text-align: left;
+        &.has-dropcap:first-letter {
+          font-family: "Jim Nightshade", cursive, sans-serif;
+          float: left;
+          font-size: 5rem;
+          line-height: 0.7;
+          margin: 0.1em 0.1em 0 0;
+        }
+      }
+    }
+  }
+}
