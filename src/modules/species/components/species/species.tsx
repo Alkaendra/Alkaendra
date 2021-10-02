@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { UnlightWorldArea } from "../../../../commons/components/history-line-generator/generate-history-line";
+import { GenerateLeader } from "../../../../commons/components/history-line-generator/generate-leader";
 import DataCarousel from "../../../../commons/components/page/carousel/data-carousel";
 import DataCollapsableBlock from "../../../../commons/components/page/data-collapsable-block/data-collapsable-block";
 import PageHeader from "../../../../commons/components/page/header/header";
@@ -17,8 +18,10 @@ const Species = (props: any) => {
   const data = species.find((specie) => specie.name === speciesId) || {};
 
   const cosa = new UnlightWorldArea();
+  const lider = new GenerateLeader();
 
   console.log(cosa.generateArea());
+  console.log("LEADER ---> ", lider.generateBasicLeader());
   return (
     <div className="species__container">
       <PageHeader
