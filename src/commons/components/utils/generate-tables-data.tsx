@@ -1,6 +1,6 @@
 import { generateRandomNumber } from "./utils";
 
-export interface DynamicDataTableObject {
+export interface IDynamicDataTableObject {
   dataToSend: {} | any;
   freq: string;
 }

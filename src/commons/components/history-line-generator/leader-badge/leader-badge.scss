@@ -1,0 +1,80 @@
+.leader-badge {
+  & .full-name {
+    display: flex;
+    color: black;
+    font-size: 2rem;
+    font-weight: 700;
+    justify-content: center;
+    & .name {
+      margin-right: 0.5rem;
+    }
+  }
+  & .traits {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  & .belongings-data,
+  & .health-data,
+  & .political-data,
+  & .skills {
+    border: 1px solid gray;
+    border-radius: 1rem;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    padding: 1.3rem 0.6rem 0.6rem;
+    margin: 16px auto;
+    width: 80%;
+    & .age-icon {
+      align-items: center;
+      color: purple;
+    }
+    & .diplomatical-icon {
+      color: sienna;
+    }
+    & .economical-icon {
+      color: darkorange;
+    }
+    & .influence-icon {
+      color: darkgoldenrod;
+    }
+    & .fortune-icon {
+      color: orangered;
+    }
+    & .health-icon {
+      color: red;
+    }
+    & .loyalty-to-leader-icon {
+      color: darkslategrey;
+    }
+    & .martial-icon {
+      color: darkgreen;
+    }
+    & .mental-icon {
+      color: darkmagenta;
+    }
+    & .moral-icon {
+      color: blue;
+    }
+    & .political-icon {
+      color: seagreen;
+    }
+    & .social-icon {
+      color: indigo;
+    }
+    & .spiritual-icon {
+      color: maroon;
+    }
+    & .subjects-loyalty-icon {
+      color: brown;
+    }
+    & .skill-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem;
+      margin: 8px auto;
+      width: 80%;
+    }
+  }
+}

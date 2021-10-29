@@ -1,0 +1,10 @@
+.nation-badge {
+  display: flex;
+  & .leader-badge,
+  & .settlement-badge {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+    width: 50%;
+  }
+}

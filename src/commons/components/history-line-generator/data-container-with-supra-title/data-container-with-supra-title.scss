@@ -1,0 +1,16 @@
+.data-container-with-supra-title {
+  position: relative;
+  & .supra-title {
+    background: #f5e9c1;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    color: black;
+    font-size: 1rem;
+    font-weight: 700;
+    left: calc(50% - 125px);
+    position: absolute;
+    text-transform: uppercase;
+    top: 0rem;
+    width: 250px;
+  }
+}

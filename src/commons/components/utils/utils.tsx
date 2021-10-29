@@ -12,3 +12,6 @@ export const getValueFromPercentage = (percentage: number, value: number) =>
 
 export const reduceToAddParam = (dataArray: any[], paramToAdd: any) =>
   dataArray.map((element) => element[paramToAdd]).reduce((a, b) => a + b, 0);
+
+export const isEmptyObject = (obj: any) =>
+  Object.keys(obj).length === 0 && obj.constructor === Object;
