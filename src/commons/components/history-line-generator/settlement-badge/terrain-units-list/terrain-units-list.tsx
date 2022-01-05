@@ -40,11 +40,11 @@ const TerrainUnitsList = (props: TerrainUniListProps) => {
           <div className="list-row" key={terrainUnit.name}>
             <InlineContent cssCustomClass={className} even>
               <div className="type-icon">
-                <FontAwesomeIcon
+                <img src={iconData.icon} title={terrainUnit.subType} />
+                {/* <FontAwesomeIcon
                   icon={iconData.icon}
                   color={iconData.color}
-                  title={terrainUnit.subType}
-                />
+                /> */}
               </div>
               <div className="name">
                 <RandomNameGeneratorIcon

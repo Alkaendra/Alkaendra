@@ -70,6 +70,231 @@ export const UnlightWorldDiscoveredRegionSize: IDynamicDataTableObject[] = [
   },
 ];
 
+export const UNLIGTH_WORLD_LANDMARK_TYPES = {
+  CAVE: "Caverna",
+  CAVE_DEEP_LAKE: "Caverna con Lago Subterráneo Profundo",
+  CAVE_LAKE: "Caverna con Lago Subterráneo",
+  CAVE_MAGMA_LAKE: "Caverna con Lago de Magma Subterráneo",
+  CAVE_MAGMA_RIVER: "Caverna con Río de Lava Subterráneo",
+  CAVE_POND: "Caverna con Manantial Subterráneo",
+  CAVE_RIVER: "Caverna con Río Subterráneo",
+};
+
+export const UNLIGHT_WORLD_LANDMARK_SIZES = {
+  VERY_SMALL: {
+    description: "Muy pequeña",
+    sizing: {
+      min: 1,
+      max: 2,
+    },
+  },
+  SMALL: {
+    description: "Pequeña",
+    sizing: {
+      min: 1,
+      max: 3,
+    },
+  },
+  MEDIUM: {
+    description: "Mediana",
+    sizing: {
+      min: 2,
+      max: 4,
+    },
+  },
+  LARGE: {
+    description: "Grande",
+    sizing: {
+      min: 3,
+      max: 6,
+    },
+  },
+  VERY_LARGE: {
+    description: "Muy Grande",
+    sizing: {
+      min: 3,
+      max: 9,
+    },
+  },
+  HUGE: {
+    description: "Gigantesca",
+    sizing: {
+      min: 6,
+      max: 12,
+    },
+  },
+};
+
+export const UNLIGHT_WORLD_AREA_SIZES = {
+  VERY_SMALL: {
+    description: "Muy pequeña",
+    regions_maximums: {
+      very_small: 3,
+      small: 1,
+      medium: 0,
+      large: 0,
+      very_large: 0,
+      huge: 0,
+    },
+  },
+  SMALL: {
+    description: "Pequeña",
+    regions_maximums: {
+      very_small: 6,
+      small: 2,
+      medium: 0,
+      large: 0,
+      very_large: 0,
+      huge: 0,
+    },
+  },
+  MEDIUM: {
+    description: "Mediana",
+    regions_maximums: {
+      very_small: 10,
+      small: 3,
+      medium: 1,
+      large: 0,
+      very_large: 0,
+      huge: 0,
+    },
+  },
+  LARGE: {
+    description: "Grande",
+    regions_maximums: {
+      very_small: 12,
+      small: 4,
+      medium: 2,
+      large: 1,
+      very_large: 0,
+      huge: 0,
+    },
+  },
+  VERY_LARGE: {
+    description: "Muy Grande",
+    regions_maximums: {
+      very_small: 16,
+      small: 6,
+      medium: 3,
+      large: 2,
+      very_large: 1,
+      huge: 0,
+    },
+  },
+  HUGE: {
+    description: "Gigantesca",
+    regions_maximums: {
+      very_small: 20,
+      small: 8,
+      medium: 4,
+      large: 3,
+      very_large: 2,
+      huge: 1,
+    },
+  },
+};
+
+export const UnlightWorldLandmarkType: IDynamicDataTableObject[] = [
+  {
+    dataToSend: {
+      appealing: {
+        min: 1,
+        max: 2,
+      },
+      danger: {
+        min: 0,
+        max: 1,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE,
+    },
+    freq: "relevant",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 2,
+        max: 4,
+      },
+      danger: {
+        min: 2,
+        max: 4,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_DEEP_LAKE,
+    },
+    freq: "rare",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 2,
+        max: 4,
+      },
+      danger: {
+        min: 1,
+        max: 3,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_LAKE,
+    },
+    freq: "minor",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 0,
+        max: 2,
+      },
+      danger: {
+        min: 3,
+        max: 6,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_MAGMA_LAKE,
+    },
+    freq: "veryRare",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 0,
+        max: 2,
+      },
+      danger: {
+        min: 2,
+        max: 4,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_MAGMA_RIVER,
+    },
+    freq: "rare",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 0,
+        max: 2,
+      },
+      danger: {
+        min: 0,
+        max: 1,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_POND,
+    },
+    freq: "minor",
+  },
+  {
+    dataToSend: {
+      appealing: {
+        min: 1,
+        max: 2,
+      },
+      danger: {
+        min: 0,
+        max: 2,
+      },
+      description: UNLIGTH_WORLD_LANDMARK_TYPES.CAVE_RIVER,
+    },
+    freq: "veryLow",
+  },
+];
+
 export const UNLIGHT_WORLD_WATER_SOURCE_SUBTYPES = {
   DEEP_LAKE: "Lago Prdofundo",
   LAKE: "Lago",

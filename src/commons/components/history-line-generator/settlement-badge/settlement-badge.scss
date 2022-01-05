@@ -63,4 +63,15 @@
   & .stability-icon {
     color: darkgoldenrod;
   }
+
+  & .type-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 0.5rem;
+    & img {
+      height: 4.5rem;
+      width: 4.5rem;
+    }
+  }
 }

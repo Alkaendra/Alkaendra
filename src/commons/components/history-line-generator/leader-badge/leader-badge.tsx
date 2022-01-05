@@ -17,6 +17,14 @@ import {
   faUsers,
   faVenus,
 } from "@fortawesome/free-solid-svg-icons";
+import diplomaticSkillIcon from "../../../../assets/icons/svg/SVG/diplomatic-skill-icon.svg";
+import economicSkillIcon from "../../../../assets/icons/svg/SVG/economic-skill-icon.svg";
+import martialSkillIcon from "../../../../assets/icons/svg/SVG/martial-skill-icon.svg";
+import mentalSkillIcon from "../../../../assets/icons/svg/SVG/mental-skill-icon.svg";
+import moralSkillIcon from "../../../../assets/icons/svg/SVG/moral-skill-icon.svg";
+import politicalSkillIcon from "../../../../assets/icons/svg/SVG/political-skill-icon.svg";
+import socialSkillIcon from "../../../../assets/icons/svg/SVG/social-skill-icon.svg";
+import spiritualSkillIcon from "../../../../assets/icons/svg/SVG/spiritual-skill-icon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { lenguaImmalar } from "../../nomenclator/kuannachta/immalar";
@@ -100,46 +108,53 @@ const LeaderBadge = (props: any) => {
         <DataContainerWithSupraTitle supraTitle="Habilidades">
           <StackContent cssCustomClass="skills">
             <InlineContent cssCustomClass="skill-row">
-              <StackContent cssCustomClass="diplomatical-icon">
-                <FontAwesomeIcon
-                  icon={faScroll}
-                  title="Habilidad Diplomática"
-                />
-                {currentLeaderData.skills.diplomatical}
+              <StackContent cssCustomClass="diplomatical-icon skill-icon">
+                <img src={diplomaticSkillIcon} title="Habilidad Diplomática" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.diplomatical}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="economical-icon">
-                <FontAwesomeIcon
-                  icon={faHandHoldingUsd}
-                  title="Habilidad Económica"
-                />
-                {currentLeaderData.skills.economical}
+              <StackContent cssCustomClass="economical-icon skill-icon">
+                <img src={economicSkillIcon} title="Habilidad Económica" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.economical}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="martial-icon">
-                <FontAwesomeIcon icon={faShieldAlt} title="Habilidad Marcial" />
-                {currentLeaderData.skills.martial}
+              <StackContent cssCustomClass="martial-icon skill-icon">
+                <img src={martialSkillIcon} title="Habilidad Marcial" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.martial}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="mental-icon">
-                <FontAwesomeIcon icon={faBrain} title="Habilidad Mental" />
-                {currentLeaderData.skills.mental}
+              <StackContent cssCustomClass="mental-icon skill-icon">
+                <img src={mentalSkillIcon} title="Habilidad Mental" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.mental}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="moral-icon">
-                <FontAwesomeIcon icon={faThumbsUp} title="Habilidad Moral" />
-                {currentLeaderData.skills.moral}
+              <StackContent cssCustomClass="moral-icon skill-icon">
+                <img src={moralSkillIcon} title="Habilidad Moral" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.moral}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="political-icon">
-                <FontAwesomeIcon
-                  icon={faHandshake}
-                  title="Habilidad Política"
-                />
-                {currentLeaderData.skills.political}
+              <StackContent cssCustomClass="political-icon skill-icon">
+                <img src={politicalSkillIcon} title="Habilidad Política" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.political}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="social-icon">
-                <FontAwesomeIcon icon={faUsers} title="Habilidad Social" />
-                {currentLeaderData.skills.social}
+              <StackContent cssCustomClass="social-icon skill-icon">
+                <img src={socialSkillIcon} title="Habilidad Social" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.social}
+                </span>
               </StackContent>
-              <StackContent cssCustomClass="spiritual-icon">
-                <FontAwesomeIcon icon={faAnkh} title="Habilidad Espiritual" />
-                {currentLeaderData.skills.spiritual}
+              <StackContent cssCustomClass="spiritual-icon skill-icon">
+                <img src={spiritualSkillIcon} title="Habilidad Espiritual" />
+                <span className="skill-value">
+                  {currentLeaderData.skills.spiritual}
+                </span>
               </StackContent>
             </InlineContent>
           </StackContent>

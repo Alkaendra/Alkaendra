@@ -4,6 +4,13 @@ import { AppContext } from "../../../../App";
 import { GenerateEquipment } from "../../../../commons/components/history-line-generator/generate-equipment";
 import { UnlightWorldArea } from "../../../../commons/components/history-line-generator/generate-history-line";
 import { GenerateLeader } from "../../../../commons/components/history-line-generator/generate-leader";
+import {
+  generateContinent,
+  generateLandMassHexData,
+  generateLandMassHexes,
+} from "../../../../commons/components/history-line-generator/land-mass/generate-land-mass";
+import { generateSettlement } from "../../../../commons/components/history-line-generator/land-mass/generate-settlements";
+import { LAND_MASS_TERRAIN_UNIT_TYPES_BY_LATITUDE_BELT } from "../../../../commons/components/history-line-generator/land-mass/tables/terrain-unit-types";
 import NationBadge from "../../../../commons/components/history-line-generator/nation-badge/nation-badge";
 import { lenguaImmalar } from "../../../../commons/components/nomenclator/kuannachta/immalar";
 import DataCarousel from "../../../../commons/components/page/carousel/data-carousel";
@@ -12,7 +19,10 @@ import PageHeader from "../../../../commons/components/page/header/header";
 import QuoteContent from "../../../../commons/components/page/quote-content/quote-content";
 import SpeciesDescription from "../../../../commons/components/species/description/species-description";
 import EthnicityData from "../../../../commons/components/species/ethnicities/ethnicity-data";
-import { isEmptyObject } from "../../../../commons/components/utils/utils";
+import {
+  generateRandomNumber,
+  isEmptyObject,
+} from "../../../../commons/components/utils/utils";
 import { UrlParams } from "../../../../commons/types/common";
 import { species } from "../species-list/utils";
 import "./species.scss";
@@ -42,6 +52,9 @@ const Species = (props: any) => {
       state?.leader,
       state?.nation
     );
+
+  generateSettlement();
+  generateContinent();
 
   return (
     <div className="species__container">

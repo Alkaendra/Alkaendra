@@ -26,16 +26,48 @@
     padding: 1.3rem 0.6rem 0.6rem;
     margin: 16px auto;
     width: 80%;
+    & .skill-value {
+      position: relative;
+      top: -35px;
+      font-weight: bold;
+      font-family: "Jim Nightshade";
+      font-size: 1.4rem;
+      left: 16px;
+    }
+    & .skill-icon {
+      & img {
+        height: 100px;
+      }
+      &.diplomatical-icon {
+        color: sienna;
+      }
+      &.economical-icon {
+        color: darkorange;
+      }
+      &.martial-icon {
+        color: darkgreen;
+      }
+      &.mental-icon {
+        color: darkmagenta;
+      }
+      &.moral-icon {
+        color: blue;
+      }
+      &.political-icon {
+        color: seagreen;
+      }
+      &.social-icon {
+        color: indigo;
+      }
+      &.spiritual-icon {
+        color: maroon;
+      }
+    }
     & .age-icon {
       align-items: center;
       color: purple;
     }
-    & .diplomatical-icon {
-      color: sienna;
-    }
-    & .economical-icon {
-      color: darkorange;
-    }
+
     & .influence-icon {
       color: darkgoldenrod;
     }
@@ -48,24 +80,7 @@
     & .loyalty-to-leader-icon {
       color: darkslategrey;
     }
-    & .martial-icon {
-      color: darkgreen;
-    }
-    & .mental-icon {
-      color: darkmagenta;
-    }
-    & .moral-icon {
-      color: blue;
-    }
-    & .political-icon {
-      color: seagreen;
-    }
-    & .social-icon {
-      color: indigo;
-    }
-    & .spiritual-icon {
-      color: maroon;
-    }
+
     & .subjects-loyalty-icon {
       color: brown;
     }
