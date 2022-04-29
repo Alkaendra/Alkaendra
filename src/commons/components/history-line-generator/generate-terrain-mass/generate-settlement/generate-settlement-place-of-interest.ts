@@ -1,10 +1,23 @@
-export interface PlaceOfInterest {
-  location?: string;
-  name?: string;
-  relevance: string;
-  type: string;
+import {
+  obtainDataFromTable,
+  generateTableDataByFrequencies,
+} from "../../../utils/generate-tables-data";
+import { generateRandomMaxMinValue } from "../../../utils/utils";
+
+//*- INTERFACES -*//
+export interface ISettlementPlaceOfInterest {
+  criminality_mod: number;
+  cultural_development_mod: number;
+  discontent_mod: number;
+  economical_development_mod: number;
+  industrial_development_mod: number;
+  name: string;
+  law_enforcement_mod: number;
+  technological_development_mod: number;
+  recreation_mod: number;
 }
 
+//*- CONSTANTS -*//
 export const placeOfInterestRelevance = [
   {
     dataToSend: "Local",
@@ -335,6 +348,8 @@ export const obtainPhenomenonSuburbDistrictLocationByFreq = [
     freq: "veryRare",
   },
 ];
+
+/*- Sentientogenic places of interest -*/
 
 // Cultural origin place of interest
 export const getCulturalPlaceOfInterestData = [
@@ -1839,4 +1854,86 @@ export const NON_NATURAL_ORIGIN_PLACES_OF_INTEREST_TABULARIUM: any = {
   industrial: getIndustrialPlaceOfInterestData,
   military: getMartialPlaceOfInterestData,
   technological: getTechnologicalPlaceOfInterestData,
+};
+
+const generateSettlementPlaceOfInterest = (
+  districtType: string
+): ISettlementPlaceOfInterest => {
+  let placeOfInterest = {} as ISettlementPlaceOfInterest;
+  const placeOfInterestOriginTable: any =
+    NON_NATURAL_ORIGIN_PLACES_OF_INTEREST_TABULARIUM[districtType];
+  if (placeOfInterestOriginTable) {
+    const placeOfInterestRawData = obtainDataFromTable(
+      generateTableDataByFrequencies(placeOfInterestOriginTable)
+    );
+    placeOfInterest = {
+      criminality_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.criminality_mod
+      ),
+      law_enforcement_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.law_enforcement_mod
+      ),
+      cultural_development_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.cultural_development_mod
+      ),
+      economical_development_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.economical_development_mod
+      ),
+      industrial_development_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.industrial_development_mod
+      ),
+      technological_development_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.technological_development_mod
+      ),
+      discontent_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.discontent_mod
+      ),
+      recreation_mod: generateRandomMaxMinValue(
+        placeOfInterestRawData.recreation_mod
+      ),
+      name: `${obtainDataFromTable(
+        generateTableDataByFrequencies(placeOfInterestRawData.possible_subtypes)
+      )} ${
+        obtainDataFromTable(
+          generateTableDataByFrequencies(placeOfInterestRawData.type_adjectives)
+        ).label
+      }`,
+    };
+  }
+  return placeOfInterest;
+};
+
+export const generateSettlementPlacesOfInterest = (
+  districtType: string
+): ISettlementPlaceOfInterest[] => {
+  let placesOfInterest: ISettlementPlaceOfInterest[] = [];
+  const placesOfInterestNumber: number = obtainDataFromTable(
+    generateTableDataByFrequencies([
+      {
+        dataToSend: 0,
+        freq: "relevant",
+      },
+      {
+        dataToSend: 1,
+        freq: "veryLow",
+      },
+      {
+        dataToSend: 2,
+        freq: "rare",
+      },
+      {
+        dataToSend: 3,
+        freq: "veryRare",
+      },
+    ])
+  );
+  if (placesOfInterestNumber > 0) {
+    for (let i: number = 0; i < placesOfInterestNumber - 1; i += 1) {
+      placesOfInterest = [
+        ...placesOfInterest,
+        { ...generateSettlementPlaceOfInterest(districtType) },
+      ];
+    }
+  }
+  return placesOfInterest;
 };

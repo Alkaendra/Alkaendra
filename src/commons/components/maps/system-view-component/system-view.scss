@@ -1,0 +1,27 @@
+.map__system-view {
+  & .system-development,
+  & .system-resource-production {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  & .development,
+  & .resource {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .development__icon,
+    & .resource__icon {
+      height: 2.5rem;
+    }
+    & .development__value,
+    & .resource__value {
+      font-family: "Jim Nightshade", serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 2.5rem;
+      position: absolute;
+    }
+  }
+}

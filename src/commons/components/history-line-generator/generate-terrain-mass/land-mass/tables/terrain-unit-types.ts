@@ -426,12 +426,6 @@ export const LAND_MASS_TERRAIN_UNIT_HIDROGRAPHY: any = {
 
 export const LAND_MASS_TERRAIN_UNIT_BIODIVERSITY: any = {
   low: {
-    adjective: {
-      boreal: "Ice Sheet",
-      temperate: "Tundra",
-      tropical: "Desert",
-      equatorial: "Desert",
-    },
     label: "Low Biodiversity",
     population_attraction: {
       max: -2,
@@ -451,12 +445,6 @@ export const LAND_MASS_TERRAIN_UNIT_BIODIVERSITY: any = {
     },
   },
   medium: {
-    adjective: {
-      boreal: "Taiga",
-      temperate: "Forest",
-      tropical: "Plain",
-      equatorial: "Plain",
-    },
     label: "Medium Biodiversisty",
     population_attraction: {
       max: 1,
@@ -476,12 +464,6 @@ export const LAND_MASS_TERRAIN_UNIT_BIODIVERSITY: any = {
     },
   },
   high: {
-    adjective: {
-      boreal: "Taiga",
-      temperate: "Forest",
-      tropical: "Savannah",
-      equatorial: "Jungle",
-    },
     label: "High Biodiversity",
     population_attraction: {
       max: 2,

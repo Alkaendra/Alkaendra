@@ -1,216 +1,40 @@
 import {
-  IBiodiversitySpecialsStems,
-  IHidrographySpecialsStems,
-  IOrographySpecialsStems,
-} from "../interfaces";
+  obtainDataFromTable,
+  generateTableDataByFrequencies,
+} from "../../../utils/generate-tables-data";
+import {
+  firstCharacterToUppercase,
+  generateRandomMaxMinValue,
+  generateRandomNumber,
+} from "../../../utils/utils";
+import { IMaxMinRange } from "../../utils/utils";
+import {
+  BIODIVERSITY_SPECIALS_STEMS,
+  BIODIVERSITY_SPECIALS_STEM_LIST,
+} from "./biodiversity-specials";
+import {
+  HIDROGRAPHY_SPECIALS_STEMS,
+  HIDROGRAPHY_SPECIALS_STEM_LIST,
+} from "./hidrography-specials";
+import {
+  OROGROPHY_AND_SEA_DEPTH_SPECIALS_STEM_LIST,
+  OROGROPHY_AND_SEA_DEPTH_SPECIALS_STEMS,
+} from "./orography-and-seadepth-specials";
 
-export const BIODIVERSITY_SPECIALS_STEM_LIST: string[] = [
-  "microbiota",
-  "fauna",
-  "flora",
-  "fungi",
-];
+export interface ISpecialsStemsItem {
+  economical_resources_mod: IMaxMinRange;
+  edible_resources_mod: IMaxMinRange;
+  industrial_resources_mod: IMaxMinRange;
+  possible_adjectives: string[];
+}
 
-export const BIODIVERSITY_SPECIALS_STEMS: IBiodiversitySpecialsStems = {
-  microbiota: {
-    economical_resources_mod: {
-      max: 10,
-      min: -30,
-    },
-    edible_resources_mod: {
-      max: 10,
-      min: -15,
-    },
-    industrial_resources_mod: {
-      max: 10,
-      min: -30,
-    },
-    possible_adjectives: [
-      "corrosive",
-      "exotic",
-      "hallucinogic",
-      "hostile",
-      "pharmaceutical",
-    ],
-  },
-  fungi: {
-    economical_resources_mod: {
-      max: 15,
-      min: -20,
-    },
-    edible_resources_mod: {
-      max: 20,
-      min: -15,
-    },
-    industrial_resources_mod: {
-      max: 15,
-      min: -20,
-    },
-    possible_adjectives: [
-      "corrosive",
-      "exotic",
-      "hallucinogic",
-      "hostile",
-      "pharmaceutical",
-      "titanical",
-    ],
-  },
-  fauna: {
-    economical_resources_mod: {
-      max: 20,
-      min: -10,
-    },
-    edible_resources_mod: {
-      max: 20,
-      min: -15,
-    },
-    industrial_resources_mod: {
-      max: 15,
-      min: -10,
-    },
-    possible_adjectives: ["exotic", "hostile", "titanical"],
-  },
-  flora: {
-    economical_resources_mod: {
-      max: 25,
-      min: -10,
-    },
-    edible_resources_mod: {
-      max: 30,
-      min: -10,
-    },
-    industrial_resources_mod: {
-      max: 20,
-      min: -10,
-    },
-    possible_adjectives: [
-      "exotic",
-      "hallucinogic",
-      "hostile",
-      "pharmaceutical",
-      "titanical",
-    ],
-  },
-};
-
-export const HIDROGRAPHY_SPECIALS_STEM_LIST: string[] = ["terrain", "water"];
-
-export const HIDROGRAPHY_SPECIALS_STEMS: IHidrographySpecialsStems = {
-  water: {
-    economical_resources_mod: {
-      max: 20,
-      min: 0,
-    },
-    edible_resources_mod: {
-      max: 30,
-      min: 10,
-    },
-    industrial_resources_mod: {
-      max: 10,
-      min: 0,
-    },
-    possible_adjectives: [
-      "anoxyc",
-      "hypersaline",
-      "mineralized",
-      "precious_metals_carrying",
-      "stationary",
-    ],
-  },
-  terrain: {
-    economical_resources_mod: {
-      max: 10,
-      min: 0,
-    },
-    edible_resources_mod: {
-      max: 10,
-      min: 0,
-    },
-    industrial_resources_mod: {
-      max: 10,
-      min: 0,
-    },
-    possible_adjectives: ["cavernous", "fertile", "unstable"],
-  },
-};
-
-export const OROGROPHY_SPECIALS_STEM_LIST: string[] = [
-  "metals",
-  "minerals",
-  "gems",
-];
-
-export const OROGRAPHY_SPECIALS_STEMS: IOrographySpecialsStems = {
-  metals: {
-    economical_resources_mod: {
-      max: 25,
-      min: 10,
-    },
-    edible_resources_mod: {
-      max: 0,
-      min: 0,
-    },
-    industrial_resources_mod: {
-      max: 40,
-      min: 20,
-    },
-    possible_adjectives: [
-      "corrosive",
-      "exotic",
-      "poor",
-      "radioactive",
-      "precious",
-      "rich",
-      "ultrapoor",
-      "ultrarich",
-    ],
-  },
-  minerals: {
-    economical_resources_mod: {
-      max: 20,
-      min: 10,
-    },
-    edible_resources_mod: {
-      max: 0,
-      min: 0,
-    },
-    industrial_resources_mod: {
-      max: 40,
-      min: 20,
-    },
-    possible_adjectives: [
-      "corrosive",
-      "exotic",
-      "poor",
-      "radioactive",
-      "rich",
-      "ultrapoor",
-      "ultrarich",
-    ],
-  },
-  gems: {
-    economical_resources_mod: {
-      max: 40,
-      min: 20,
-    },
-    edible_resources_mod: {
-      max: 0,
-      min: 0,
-    },
-    industrial_resources_mod: {
-      max: 20,
-      min: 10,
-    },
-    possible_adjectives: [
-      "corrosive",
-      "exotic",
-      "precious",
-      "radioactive",
-      "rich",
-      "ultrarich",
-    ],
-  },
-};
+export interface IHexSpecial {
+  label: string;
+  economical_mod: number;
+  edible_mod: number;
+  industrial_mod: number;
+  population_attraction_mod: number;
+}
 
 export const SPECIALS_STEM_ADJECTIVES: any = {
   anoxyc: {
@@ -573,4 +397,112 @@ export const SPECIALS_STEM_ADJECTIVES: any = {
       min: -20,
     },
   },
+};
+
+//*- SCHEMATICS -*//
+
+export const hexSpecialSchematic: IHexSpecial = {
+  label: "",
+  economical_mod: 0,
+  edible_mod: 0,
+  industrial_mod: 0,
+  population_attraction_mod: 0,
+};
+
+const generateSpecialLabel = (adjective: string, stem: string): string =>
+  `${firstCharacterToUppercase(adjective)} ${firstCharacterToUppercase(stem)}`;
+
+const SPECIALS_TYPES = ["biodiversity", "hidrography", "orography"];
+
+const SPECIALS_TYPES_DATA_ARRAYS: any = {
+  biodiversity: {
+    stemlist: BIODIVERSITY_SPECIALS_STEM_LIST,
+    stems: BIODIVERSITY_SPECIALS_STEMS,
+  },
+  hidrography: {
+    stemlist: HIDROGRAPHY_SPECIALS_STEM_LIST,
+    stems: HIDROGRAPHY_SPECIALS_STEMS,
+  },
+  orography: {
+    stemlist: OROGROPHY_AND_SEA_DEPTH_SPECIALS_STEM_LIST,
+    stems: OROGROPHY_AND_SEA_DEPTH_SPECIALS_STEMS,
+  },
+};
+
+export const generateHexSpecial = (specialType: string): IHexSpecial => {
+  let special: IHexSpecial = hexSpecialSchematic;
+  let specialStemListArray: string[] = [];
+  let specialStemsArray: any = {};
+
+  specialStemListArray = SPECIALS_TYPES_DATA_ARRAYS[specialType].stemlist;
+  specialStemsArray = SPECIALS_TYPES_DATA_ARRAYS[specialType].stems;
+
+  const specialRawDataItem: string =
+    specialStemListArray[
+      generateRandomNumber(0, specialStemListArray.length - 1)
+    ];
+  const specialRawData: ISpecialsStemsItem =
+    specialStemsArray[specialRawDataItem];
+  const specialStemAdjectiveIndex =
+    specialRawData.possible_adjectives[
+      generateRandomNumber(0, specialRawData.possible_adjectives.length - 1)
+    ];
+  const specialStemAdjective =
+    SPECIALS_STEM_ADJECTIVES[specialStemAdjectiveIndex];
+  special.label = generateSpecialLabel(
+    specialStemAdjectiveIndex,
+    specialRawDataItem
+  );
+
+  special.economical_mod =
+    generateRandomMaxMinValue(specialRawData.economical_resources_mod) +
+    generateRandomMaxMinValue(specialStemAdjective.economical_resources_mod);
+  special.edible_mod =
+    generateRandomMaxMinValue(specialRawData.edible_resources_mod) +
+    generateRandomMaxMinValue(specialStemAdjective.edible_resources_mod);
+  special.industrial_mod =
+    generateRandomMaxMinValue(specialRawData.industrial_resources_mod) +
+    generateRandomMaxMinValue(specialStemAdjective.industrial_resources_mod);
+  special.population_attraction_mod = generateRandomMaxMinValue(
+    specialStemAdjective.population_attraction_mod
+  );
+
+  return special;
+};
+
+export const generateHexSpecials = (): IHexSpecial[] => {
+  let specials: IHexSpecial[] = [];
+  const specialsNumber: number = obtainDataFromTable(
+    generateTableDataByFrequencies([
+      {
+        dataToSend: 0,
+        freq: "relevant",
+      },
+      {
+        dataToSend: 1,
+        freq: "veryLow",
+      },
+      {
+        dataToSend: 2,
+        freq: "rare",
+      },
+      {
+        dataToSend: 3,
+        freq: "veryRare",
+      },
+    ])
+  );
+  if (specialsNumber > 0) {
+    for (let i: number = 0; i < specialsNumber - 1; i += 1) {
+      specials = [
+        ...specials,
+        {
+          ...generateHexSpecial(
+            SPECIALS_TYPES[generateRandomNumber(0, SPECIALS_TYPES.length - 1)]
+          ),
+        },
+      ];
+    }
+  }
+  return specials;
 };

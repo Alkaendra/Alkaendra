@@ -1,24 +1,26 @@
-import { generateRandomNames } from "../../nomenclator/nomenclator-generator";
-import { lenguaUrarnu } from "../../nomenclator/uryarn/urarnu";
+import { generateRandomNames } from "../../../nomenclator/nomenclator-generator";
+import { lenguaUrarnu } from "../../../nomenclator/uryarn/urarnu";
 import {
   generateTableDataByFrequencies,
   obtainDataFromTable,
-} from "../../utils/generate-tables-data";
+} from "../../../utils/generate-tables-data";
 import {
-  arrayValuesAdding,
   convertToRoman,
-  generateRandomFloat,
-  generateRandomMaxMinValue,
   generateRandomNumber,
   getRangedValue,
   getTwoDecimalsFloatRangedValue,
   objectMap,
   parseNumbersToTwoDecimalDigits,
-} from "../../utils/utils";
-import { generateModifiedResourceData } from "./generate-land-mass";
-import { NON_NATURAL_ORIGIN_PLACES_OF_INTEREST_TABULARIUM } from "./tables/settlements-places-of-interest";
+} from "../../../utils/utils";
+import { generateModifiedResourceData } from "../../utils";
+import { IHexSpecial } from "../generate-planetary-mass-specials/generate-planetary-mass-specials";
+import { generateSpacePorts, ISpacePort } from "./spaceport";
+import {
+  generateSettlementPlacesOfInterest,
+  ISettlementPlaceOfInterest,
+} from "./generate-settlement-place-of-interest";
 
-export interface MayorSettlement {
+export interface IMayorSettlement {
   class: number;
   criminality: number;
   danger: number;
@@ -28,7 +30,7 @@ export interface MayorSettlement {
   development_industrial: number;
   development_technological: number;
   discontent: number;
-  districts: MayorSettlementDistrict[];
+  districts: IMayorSettlementDistrict[];
   label: string;
   law_enforcement_presence: number;
   name: string;
@@ -36,10 +38,11 @@ export interface MayorSettlement {
   places_of_interest?: any[];
   recreation: number;
   social_stability: number;
+  space_ports?: ISpacePort[];
   specials?: any[];
 }
 
-export interface MayorSettlementDistrict {
+export interface IMayorSettlementDistrict {
   class: number;
   criminality: number;
   danger: number;
@@ -49,13 +52,13 @@ export interface MayorSettlementDistrict {
   development_industrial: number;
   development_technological: number;
   discontent: number;
-  label?: string;
+  label: string;
   law_enforcement_presence: number;
   population_density?: string;
-  places_of_interest?: any[];
+  places_of_interest?: ISettlementPlaceOfInterest[];
   recreation: number;
   social_stability: number;
-  specials?: any[];
+  specials?: IHexSpecial[];
   type?: string;
 }
 
@@ -471,88 +474,10 @@ export const SETTLEMENT_HABITATIONAL_DISTRICT_TYPES = [
   },
 ];
 
-const generateSettlementPlaceOfInterest = (districtType: string): any => {
-  let placeOfInterest = {} as any;
-  const placeOfInterestOriginTable: any =
-    NON_NATURAL_ORIGIN_PLACES_OF_INTEREST_TABULARIUM[districtType];
-  if (placeOfInterestOriginTable) {
-    const placeOfInterestRawData = obtainDataFromTable(
-      generateTableDataByFrequencies(placeOfInterestOriginTable)
-    );
-    placeOfInterest = {
-      criminality_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.criminality_mod
-      ),
-      law_enforcement_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.law_enforcement_mod
-      ),
-      cultural_development_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.cultural_development_mod
-      ),
-      economical_development_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.economical_development_mod
-      ),
-      industrial_development_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.industrial_development_mod
-      ),
-      technological_development_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.technological_development_mod
-      ),
-      discontent_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.discontent_mod
-      ),
-      recreation_mod: generateRandomMaxMinValue(
-        placeOfInterestRawData.recreation_mod
-      ),
-      name: `${obtainDataFromTable(
-        generateTableDataByFrequencies(placeOfInterestRawData.possible_subtypes)
-      )} ${
-        obtainDataFromTable(
-          generateTableDataByFrequencies(placeOfInterestRawData.type_adjectives)
-        ).label
-      }`,
-    };
-  }
-  return placeOfInterest;
-};
-
-const generateSettlementPlacesOfInterest = (districtType: string): any[] => {
-  let placesOfInterest: any[] = [];
-  const placesOfInterestNumber: number = obtainDataFromTable(
-    generateTableDataByFrequencies([
-      {
-        dataToSend: 0,
-        freq: "relevant",
-      },
-      {
-        dataToSend: 1,
-        freq: "veryLow",
-      },
-      {
-        dataToSend: 2,
-        freq: "rare",
-      },
-      {
-        dataToSend: 3,
-        freq: "veryRare",
-      },
-    ])
-  );
-  if (placesOfInterestNumber > 0) {
-    for (let i: number = 0; i < placesOfInterestNumber - 1; i += 1) {
-      placesOfInterest = [
-        ...placesOfInterest,
-        { ...generateSettlementPlaceOfInterest(districtType) },
-      ];
-    }
-  }
-  return placesOfInterest;
-};
-
 export const generateMayorSettlementCommonDistrictData = (
   type: string
-): MayorSettlementDistrict => {
-  let district: MayorSettlementDistrict = {} as any;
+): IMayorSettlementDistrict => {
+  let district: IMayorSettlementDistrict = {} as any;
   const typesTable =
     type === DISTRICT_TYPES.HABITATIONAL
       ? SETTLEMENT_HABITATIONAL_DISTRICT_TYPES
@@ -569,18 +494,16 @@ export const generateMayorSettlementCommonDistrictData = (
   // Generate criminality value
   district.criminality = generateModifiedResourceData(
     getTwoDecimalsFloatRangedValue(districtTypeRawData.criminality),
-    district.places_of_interest?.[0]?.criminality_mod,
-    district.places_of_interest?.[1]?.criminality_mod,
-    district.places_of_interest?.[2]?.criminality_mod
+    district.places_of_interest,
+    "criminality_mod"
   );
   // Generate law enforcement presence
   district.law_enforcement_presence = generateModifiedResourceData(
     getTwoDecimalsFloatRangedValue(
       districtTypeRawData.law_enforcement_presence
     ),
-    district.places_of_interest?.[0]?.law_enforcement_mod,
-    district.places_of_interest?.[1]?.law_enforcement_mod,
-    district.places_of_interest?.[2]?.law_enforcement_mod
+    district.places_of_interest,
+    "law_enforcement_mod"
   );
 
   // Generate district danger
@@ -593,9 +516,8 @@ export const generateMayorSettlementCommonDistrictData = (
       district.class *
         getTwoDecimalsFloatRangedValue(districtTypeRawData.development_cultural)
     ),
-    district.places_of_interest?.[0]?.cultural_development_mod,
-    district.places_of_interest?.[1]?.cultural_development_mod,
-    district.places_of_interest?.[2]?.cultural_development_mod
+    district.places_of_interest,
+    "cultural_development_mod"
   );
 
   district.development_economical = generateModifiedResourceData(
@@ -605,9 +527,8 @@ export const generateMayorSettlementCommonDistrictData = (
           districtTypeRawData.development_economical
         )
     ),
-    district.places_of_interest?.[0]?.economical_development_mod,
-    district.places_of_interest?.[1]?.economical_development_mod,
-    district.places_of_interest?.[2]?.economical_development_mod
+    district.places_of_interest,
+    "economical_development_mod"
   );
 
   district.development_industrial = generateModifiedResourceData(
@@ -617,9 +538,8 @@ export const generateMayorSettlementCommonDistrictData = (
           districtTypeRawData.development_industrial
         )
     ),
-    district.places_of_interest?.[0]?.industrial_development_mod,
-    district.places_of_interest?.[1]?.industrial_development_mod,
-    district.places_of_interest?.[2]?.industrial_development_mod
+    district.places_of_interest,
+    "industrial_development_mod"
   );
 
   district.development_technological = generateModifiedResourceData(
@@ -629,9 +549,8 @@ export const generateMayorSettlementCommonDistrictData = (
           districtTypeRawData.development_technological
         )
     ),
-    district.places_of_interest?.[0]?.technological_development_mod,
-    district.places_of_interest?.[1]?.technological_development_mod,
-    district.places_of_interest?.[2]?.technological_development_mod
+    district.places_of_interest,
+    "technological_development_mod"
   );
 
   // Generate label
@@ -645,17 +564,15 @@ export const generateMayorSettlementCommonDistrictData = (
     // Generate discontent
     district.discontent = generateModifiedResourceData(
       getTwoDecimalsFloatRangedValue(districtTypeRawData.discontent),
-      district.places_of_interest?.[0]?.discontent_mod,
-      district.places_of_interest?.[1]?.discontent_mod,
-      district.places_of_interest?.[2]?.discontent_mod
+      district.places_of_interest,
+      "discontent_mod"
     );
 
     // Generate recreation generated
     district.recreation = generateModifiedResourceData(
       getTwoDecimalsFloatRangedValue(districtTypeRawData.recreation),
-      district.places_of_interest?.[0]?.recreation_mod,
-      district.places_of_interest?.[1]?.recreation_mod,
-      district.places_of_interest?.[2]?.recreation_mod
+      district.places_of_interest,
+      "recreation_mod"
     );
 
     // Calculate social stability as recreation minus discontent formula
@@ -675,8 +592,12 @@ export const generateMayorSettlementCommonDistrictData = (
   return district;
 };
 
+/**
+ * Method to generate planetary Mayor Settlements
+ * @returns {IMayorSettlement} A planetary Mayor Settlement
+ */
 export const generateSettlement = () => {
-  let settlement: MayorSettlement = {
+  let settlement: IMayorSettlement = {
     criminality: 0,
     danger: 0,
     development_cultural: 0,
@@ -687,8 +608,9 @@ export const generateSettlement = () => {
     law_enforcement_presence: 0,
     recreation: 0,
     social_stability: 0,
+    space_ports: [],
   } as any;
-  let districts: MayorSettlementDistrict[] = [];
+  let districts: IMayorSettlementDistrict[] = [];
   const settlementClassData = obtainDataFromTable(
     generateTableDataByFrequencies(SETTLEMENT_CLASS)
   );
@@ -724,17 +646,12 @@ export const generateSettlement = () => {
     settlementClassData.population_range.max
   ).toLocaleString("es-ES");
   settlement.districts = districts;
-  console.log(
-    "DISTRICTS ----*****>>> ",
-    objectMap(settlement, (s: any) =>
-      !isNaN(s) ? parseNumbersToTwoDecimalDigits(s) : s
-    )
-  );
-  console.log(
-    "[URARNU- NAMES] ----> ",
-    settlement.districts.map((d: any) => d.label)
-  );
-  return objectMap(settlement, (s: any) =>
-    !isNaN(s) ? parseNumbersToTwoDecimalDigits(s) : s
-  );
+  settlement.space_ports = generateSpacePorts(settlement.districts);
+  const parsedSettlement: IMayorSettlement = objectMap(settlement, (s: any) =>
+    typeof s !== "string" && !Array.isArray(s)
+      ? parseNumbersToTwoDecimalDigits(s)
+      : s
+  ) as IMayorSettlement;
+
+  return parsedSettlement;
 };
